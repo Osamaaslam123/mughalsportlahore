@@ -2,19 +2,17 @@ import { createClient } from "@libsql/client";
 import path from "path";
 import fs from "fs";
 
-// On Vercel: use DATABASE_URL env var (Turso/libsql cloud)
-// Locally:   use a local SQLite file
-const isVercel = !!process.env.VERCEL;
-
+// If DATABASE_URL is set → use Turso cloud (works locally + on Vercel)
+// Otherwise             → use local SQLite file (dev fallback)
 let db: ReturnType<typeof createClient>;
 
-if (isVercel && process.env.DATABASE_URL) {
+if (process.env.DATABASE_URL) {
   db = createClient({
     url: process.env.DATABASE_URL,
     authToken: process.env.DATABASE_AUTH_TOKEN,
   });
 } else {
-  // Local SQLite file
+  // Local SQLite file fallback
   const dataDir = path.join(process.cwd(), "data");
   if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
   const dbPath = path.join(dataDir, "mughal-sports.db");
