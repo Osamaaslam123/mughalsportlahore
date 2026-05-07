@@ -49,7 +49,7 @@ export async function initDb() {
 
   // Seed products if empty
   const { rows } = await db.execute("SELECT COUNT(*) as c FROM products");
-  const count = Number((rows[0] as { c: number }).c);
+  const count = Number((rows[0] as unknown as { c: number }).c);
 
   if (count === 0) {
     const products = [
