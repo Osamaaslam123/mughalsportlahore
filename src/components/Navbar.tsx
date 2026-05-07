@@ -1,98 +1,128 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled]   = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   const links = [
-    { href: "/", label: "Home" },
+    { href: "/",         label: "Home" },
     { href: "/products", label: "Products" },
-    { href: "/about", label: "About Us" },
-    { href: "/contact", label: "Contact" },
+    { href: "/about",    label: "About Us" },
+    { href: "/contact",  label: "Contact" },
   ];
 
   return (
-    <nav
-      style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
-        transition: "all 0.3s",
-        background: scrolled
-          ? "rgba(10,10,15,0.95)"
-          : "linear-gradient(to bottom, rgba(10,10,15,0.8), transparent)",
-        backdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(201,162,39,0.2)" : "none",
-        padding: "0 2rem",
-      }}
-    >
-      <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "70px" }}>
-        {/* Logo */}
-        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.6rem" }}>
-          <div style={{
-            width: "40px", height: "40px", borderRadius: "50%",
-            background: "linear-gradient(135deg, #c9a227, #f0c94b)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: "1.2rem", boxShadow: "0 0 15px rgba(201,162,39,0.5)",
-          }}>⚽</div>
-          <div>
-            <div style={{ fontWeight: 900, fontSize: "1rem", lineHeight: 1, color: "#f0c94b" }}>MUGHAL SPORTS</div>
-            <div style={{ fontSize: "0.65rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.15em", textTransform: "uppercase" }}>Lahore, Pakistan</div>
-          </div>
-        </Link>
-
-        {/* Desktop Links */}
-        <div style={{ display: "flex", gap: "2rem", alignItems: "center" }} className="desktop-nav">
-          {links.map((l) => (
-            <Link key={l.href} href={l.href} className="nav-link">{l.label}</Link>
-          ))}
-          <Link href="/admin" className="btn-gold" style={{ padding: "0.5rem 1.2rem", fontSize: "0.85rem" }}>
-            Admin Panel
-          </Link>
+    <>
+      {/* Top strip */}
+      <div style={{
+        background: "linear-gradient(135deg, #0B1426, #070D1A)",
+        borderBottom: "1px solid rgba(66,165,245,0.12)",
+        padding: "0.35rem 2rem",
+        display: "flex", justifyContent: "space-between", alignItems: "center",
+        fontSize: "0.75rem", color: "rgba(255,255,255,0.45)",
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 1001,
+      }}>
+        <span>📍 Lahore, Punjab, Pakistan</span>
+        <div style={{ display: "flex", gap: "1.5rem" }}>
+          <a href="tel:03002787977" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}>📞 0300-2787977</a>
+          <span>🕐 Mon–Sat: 9AM – 8PM</span>
         </div>
-
-        {/* Mobile Hamburger */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: "0.5rem", display: "none" }}
-          className="hamburger"
-          aria-label="Menu"
-        >
-          <div style={{ width: "24px", height: "2px", background: "#f0c94b", marginBottom: "5px", transition: "all 0.3s", transform: menuOpen ? "rotate(45deg) translate(5px,5px)" : "none" }} />
-          <div style={{ width: "24px", height: "2px", background: "#f0c94b", marginBottom: "5px", opacity: menuOpen ? 0 : 1 }} />
-          <div style={{ width: "24px", height: "2px", background: "#f0c94b", transform: menuOpen ? "rotate(-45deg) translate(5px,-5px)" : "none", transition: "all 0.3s" }} />
-        </button>
       </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div style={{
-          background: "rgba(10,10,15,0.98)", padding: "1rem 2rem 1.5rem",
-          borderTop: "1px solid rgba(201,162,39,0.2)",
-        }}>
-          {links.map((l) => (
-            <div key={l.href} style={{ marginBottom: "1rem" }}>
-              <Link href={l.href} className="nav-link" onClick={() => setMenuOpen(false)} style={{ fontSize: "1.1rem" }}>{l.label}</Link>
+      {/* Main nav */}
+      <nav style={{
+        position: "fixed", top: "29px", left: 0, right: 0, zIndex: 1000,
+        background: scrolled
+          ? "rgba(4,8,15,0.96)"
+          : "linear-gradient(to bottom, rgba(4,8,15,0.85), transparent)",
+        backdropFilter: scrolled ? "blur(20px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(66,165,245,0.15)" : "none",
+        transition: "all 0.35s",
+        padding: "0 2rem",
+      }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
+
+          {/* Logo */}
+          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.8rem" }}>
+            <div style={{
+              width: "44px", height: "44px", borderRadius: "10px", overflow: "hidden",
+              boxShadow: "0 0 20px rgba(21,101,192,0.6), 0 0 0 1px rgba(66,165,245,0.3)",
+              flexShrink: 0,
+            }}>
+              <Image src="/logo.svg" alt="Mughal Sports Logo" width={44} height={44} style={{ display: "block" }} />
             </div>
-          ))}
-          <Link href="/admin" className="btn-gold" style={{ fontSize: "0.9rem" }} onClick={() => setMenuOpen(false)}>
-            Admin Panel
+            <div>
+              <div style={{ fontWeight: 900, fontSize: "1.05rem", color: "#fff", lineHeight: 1, letterSpacing: "0.04em" }}>
+                MUGHAL <span style={{ color: "#42A5F5" }}>SPORTS</span>
+              </div>
+              <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.4)", letterSpacing: "0.18em", textTransform: "uppercase", marginTop: "2px" }}>
+                Lahore · Pakistan
+              </div>
+            </div>
           </Link>
+
+          {/* Desktop links */}
+          <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }} className="desk-nav">
+            {links.map(l => (
+              <Link key={l.href} href={l.href} className="nav-link">{l.label}</Link>
+            ))}
+            <a href="tel:03002787977" style={{
+              background: "rgba(21,101,192,0.15)",
+              border: "1px solid rgba(66,165,245,0.35)",
+              color: "#42A5F5", borderRadius: "999px",
+              padding: "0.45rem 1.1rem", fontSize: "0.82rem",
+              fontWeight: 700, textDecoration: "none",
+              transition: "all 0.2s",
+            }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(21,101,192,0.3)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(21,101,192,0.15)"; }}
+            >
+              📞 0300-2787977
+            </a>
+            <Link href="/admin" className="btn-primary" style={{ padding: "0.5rem 1.1rem", fontSize: "0.82rem", borderRadius: "0.5rem" }}>
+              Admin
+            </Link>
+          </div>
+
+          {/* Hamburger */}
+          <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", cursor: "pointer", padding: "0.5rem", display: "none" }} className="ham">
+            {[0,1,2].map(i => (
+              <div key={i} style={{
+                width: "22px", height: "2px", background: "#42A5F5", marginBottom: i < 2 ? "5px" : 0,
+                transition: "all 0.3s",
+                transform: menuOpen ? (i === 0 ? "rotate(45deg) translate(5px,5px)" : i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "") : "",
+                opacity: menuOpen && i === 1 ? 0 : 1,
+              }} />
+            ))}
+          </button>
         </div>
-      )}
+
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div style={{ background: "rgba(4,8,15,0.98)", padding: "1rem 2rem 1.5rem", borderTop: "1px solid rgba(66,165,245,0.12)" }}>
+            {links.map(l => (
+              <div key={l.href} style={{ marginBottom: "1rem" }}>
+                <Link href={l.href} className="nav-link" onClick={() => setMenuOpen(false)} style={{ fontSize: "1rem" }}>{l.label}</Link>
+              </div>
+            ))}
+            <a href="tel:03002787977" style={{ color: "#42A5F5", fontWeight: 700, display: "block", marginBottom: "1rem" }}>📞 0300-2787977</a>
+            <Link href="/admin" className="btn-primary" style={{ fontSize: "0.88rem" }} onClick={() => setMenuOpen(false)}>Admin Panel</Link>
+          </div>
+        )}
+      </nav>
 
       <style>{`
-        @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .hamburger { display: block !important; }
-        }
+        @media (max-width: 900px) { .desk-nav { display: none !important; } .ham { display: block !important; } }
       `}</style>
-    </nav>
+    </>
   );
 }

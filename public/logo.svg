@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <!-- Blue background square -->
+  <rect width="220" height="220" fill="#1565C0"/>
+  <!-- Hexagon outer shape (white) -->
+  <polygon points="110,18 185,60 185,160 110,202 35,160 35,60" fill="none" stroke="white" stroke-width="10"/>
+  <!-- Diamond top -->
+  <polygon points="110,26 130,52 110,62 90,52" fill="white"/>
+  <!-- M shape top arms -->
+  <polygon points="46,70 66,70 66,130 54,130 54,80 46,80" fill="white"/>
+  <polygon points="154,70 174,70 174,80 166,80 166,130 154,130" fill="white"/>
+  <polygon points="66,70 90,70 90,80 66,80" fill="white"/>
+  <polygon points="130,70 154,70 154,80 130,80" fill="white"/>
+  <polygon points="90,70 110,90 130,70 130,80 110,100 90,80" fill="white"/>
+  <!-- S shape bottom -->
+  <path d="M70,120 L150,120 L150,130 L80,130 L80,145 L150,145 L150,170 L70,170 L70,160 L140,160 L140,145 L70,145 Z" fill="white"/>
+</svg>
