@@ -1,16 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
-  <!-- Blue background square -->
-  <rect width="220" height="220" fill="#1565C0"/>
-  <!-- Hexagon outer shape (white) -->
-  <polygon points="110,18 185,60 185,160 110,202 35,160 35,60" fill="none" stroke="white" stroke-width="10"/>
-  <!-- Diamond top -->
-  <polygon points="110,26 130,52 110,62 90,52" fill="white"/>
-  <!-- M shape top arms -->
-  <polygon points="46,70 66,70 66,130 54,130 54,80 46,80" fill="white"/>
-  <polygon points="154,70 174,70 174,80 166,80 166,130 154,130" fill="white"/>
-  <polygon points="66,70 90,70 90,80 66,80" fill="white"/>
-  <polygon points="130,70 154,70 154,80 130,80" fill="white"/>
-  <polygon points="90,70 110,90 130,70 130,80 110,100 90,80" fill="white"/>
-  <!-- S shape bottom -->
-  <path d="M70,120 L150,120 L150,130 L80,130 L80,145 L150,145 L150,170 L70,170 L70,160 L140,160 L140,145 L70,145 Z" fill="white"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1565C0"/>
+
+  <!-- Outer hexagon -->
+  <polygon points="100,12 168,52 168,148 100,188 32,148 32,52"
+           fill="none" stroke="white" stroke-width="7" stroke-linejoin="round"/>
+
+  <!-- Top diamond -->
+  <polygon points="100,22 118,44 100,54 82,44" fill="white"/>
+
+  <!-- M — left pillar -->
+  <rect x="42" y="68" width="14" height="64" fill="white"/>
+  <!-- M — right pillar -->
+  <rect x="144" y="68" width="14" height="64" fill="white"/>
+  <!-- M — left chevron down-stroke -->
+  <polygon points="42,68 56,68 82,96 68,96" fill="white"/>
+  <!-- M — right chevron down-stroke -->
+  <polygon points="158,68 144,68 118,96 132,96" fill="white"/>
+  <!-- M — centre join -->
+  <polygon points="68,96 100,68 132,96 118,96 100,82 82,96" fill="white"/>
+
+  <!-- S — top bar -->
+  <rect x="58" y="112" width="84" height="13" rx="4" fill="white"/>
+  <!-- S — middle bar -->
+  <rect x="58" y="131" width="84" height="13" rx="4" fill="white"/>
+  <!-- S — bottom bar -->
+  <rect x="58" y="150" width="84" height="13" rx="4" fill="white"/>
+  <!-- S — left cap top -->
+  <rect x="58" y="112" width="13" height="32" rx="0" fill="white"/>
+  <!-- S — right cap bottom -->
+  <rect x="129" y="131" width="13" height="32" rx="0" fill="white"/>
 </svg>
