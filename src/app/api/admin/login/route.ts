@@ -1,9 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
-import crypto from "crypto";
 
-function makeToken(password: string) {
-  const secret = process.env.ADMIN_SECRET ?? "fallback-secret";
-  return crypto.createHmac("sha256", secret).update(password).digest("hex");
+async function makeToken(password: string): Promise<string> {
+  const secret  = process.env.ADMIN_SECRET ?? "fallback-secret";
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(password));
+  return Array.from(new Uint8Array(sig))
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 export async function POST(req: NextRequest) {
@@ -14,7 +24,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid password" }, { status: 401 });
   }
 
-  const token = makeToken(password);
+  const token = await makeToken(password);
   const res   = NextResponse.json({ success: true });
 
   res.cookies.set("admin_token", token, {
