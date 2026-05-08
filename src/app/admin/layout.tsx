@@ -5,9 +5,12 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
-  { href: "/admin/dashboard", icon: "▣", label: "Dashboard" },
-  { href: "/admin/products",  icon: "📦", label: "Products"  },
-  { href: "/admin/enquiries", icon: "💬", label: "Enquiries" },
+  { href: "/admin/dashboard",    icon: "▣",  label: "Dashboard"    },
+  { href: "/admin/products",     icon: "📦", label: "Products"     },
+  { href: "/admin/enquiries",    icon: "💬", label: "Enquiries"    },
+  { href: "/admin/content",      icon: "🎨", label: "Content"      },
+  { href: "/admin/testimonials", icon: "⭐", label: "Testimonials" },
+  { href: "/admin/customers",    icon: "👥", label: "Customers"    },
 ];
 
 function Sidebar({ collapsed, setCollapsed }: { collapsed: boolean; setCollapsed: (v: boolean) => void }) {
@@ -118,7 +121,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.75rem" }}>Mughal Sports Lahore</span>
               <span style={{ color: "rgba(255,255,255,0.15)", margin: "0 0.4rem" }}>/</span>
               <span style={{ color: "#fff", fontSize: "0.82rem", fontWeight: 600 }}>
-                {navItems.find(n => pathname.startsWith(n.href))?.label ?? "Admin"}
+                {navItems.slice().reverse().find(n => pathname.startsWith(n.href))?.label ?? "Admin"}
               </span>
             </div>
           </div>

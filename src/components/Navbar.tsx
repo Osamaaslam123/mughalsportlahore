@@ -13,6 +13,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
+  const [customer, setCustomer] = useState<{name:string}|null>(null);
+
+  useEffect(() => {
+    fetch("/api/customers/me").then(r=>r.json()).then(d=>{ if(d.customer) setCustomer(d.customer); });
+  }, []);
+
   const links = [
     { href: "/",         label: "Home"      },
     { href: "/products", label: "Products"  },
@@ -79,6 +85,15 @@ export default function Navbar() {
             >
               📞 Call Us
             </a>
+            {customer ? (
+              <Link href="/account" style={{ background:"rgba(21,101,192,0.15)", border:"1px solid rgba(66,165,245,0.35)", color:"#42A5F5", borderRadius:"999px", padding:"0.45rem 1.1rem", fontSize:"0.82rem", fontWeight:700, textDecoration:"none" }}>
+                👤 {customer.name.split(" ")[0]}
+              </Link>
+            ) : (
+              <Link href="/login" style={{ background:"rgba(21,101,192,0.15)", border:"1px solid rgba(66,165,245,0.35)", color:"#42A5F5", borderRadius:"999px", padding:"0.45rem 1.1rem", fontSize:"0.82rem", fontWeight:700, textDecoration:"none" }}>
+                🔑 Login
+              </Link>
+            )}
             <Link href="/contact" className="btn-primary" style={{ padding:"0.5rem 1.3rem", fontSize:"0.85rem", borderRadius:"0.5rem" }}>
               Get Quote
             </Link>
