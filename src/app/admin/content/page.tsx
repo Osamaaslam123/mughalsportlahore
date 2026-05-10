@@ -1,7 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const SECTIONS = [
+type Field = { key: string; label: string; hint?: string; textarea?: boolean };
+type Section = { title: string; fields: Field[] };
+
+const SECTIONS: Section[] = [
   {
     title: "🏠 Homepage Hero",
     fields: [
