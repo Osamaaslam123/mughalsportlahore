@@ -37,10 +37,10 @@ export default function Navbar() {
         fontSize: "0.75rem", color: "rgba(255,255,255,0.45)",
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 1001,
       }}>
-        <span>📍 Lahore, Punjab, Pakistan</span>
+        <span className="top-strip-address">📍 Lahore, Punjab, Pakistan</span>
         <div style={{ display:"flex", gap:"1.5rem" }}>
           <a href="tel:03002787977" style={{ color:"rgba(255,255,255,0.6)", textDecoration:"none" }}>📞 0300-2787977</a>
-          <span>🕐 Mon–Sat: 9AM – 8PM</span>
+          <span className="top-strip-hours">🕐 Mon–Sat: 9AM – 8PM</span>
         </div>
       </div>
 

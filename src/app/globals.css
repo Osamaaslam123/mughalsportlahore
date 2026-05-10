@@ -337,3 +337,157 @@ body {
   animation: line-grow 1s ease forwards;
   transform-origin: left;
 }
+
+/* ════════════════════════════════════════════
+   FULL RESPONSIVE — MOBILE FIRST
+════════════════════════════════════════════ */
+
+/* ── Tablet ≤ 1024px ── */
+@media (max-width: 1024px) {
+  [style*="padding:7rem 2rem"]  { padding: 5rem 1.5rem !important; }
+  [style*="gap:4rem"]           { gap: 2.5rem !important; }
+  [style*="max-width:1240px"]   { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+}
+
+/* ── Mobile ≤ 768px ── */
+@media (max-width: 768px) {
+
+  /* Hero 2-col → 1-col */
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Hide 3D orbit animation (height:520px container) */
+  [style*="height:520px"] { display: none !important; }
+
+  /* Stats 4-col → 2-col */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: repeat(2,1fr) !important;
+  }
+
+  /* Section & layout padding */
+  [style*="padding:7rem 2rem"]  { padding: 4rem 1.25rem !important; }
+  [style*="padding:6rem 2rem"]  { padding: 3rem 1.25rem !important; }
+  [style*="padding:5rem 2rem"]  { padding: 3rem 1.25rem !important; }
+  [style*="padding:4rem 2rem"]  { padding: 2.5rem 1.25rem !important; }
+  [style*="padding:5rem 3rem"]  { padding: 2.5rem 1.25rem !important; }
+  [style*="padding:2rem 2rem 6rem"] { padding: 2rem 1.25rem 4rem !important; }
+
+  /* About page 1fr 2fr / 2fr 1fr grids */
+  [style*="grid-template-columns:1fr 2fr"],
+  [style*="grid-template-columns:2fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hero font */
+  .hero-title { font-size: clamp(2.4rem, 9vw, 4rem) !important; }
+  .section-title { font-size: clamp(1.5rem, 6vw, 2.4rem) !important; }
+
+  /* Top navbar info strip — hide hours text */
+  .top-strip-hours { display: none !important; }
+
+  /* Buttons: wrap nicely */
+  .btn-primary, .btn-ghost {
+    padding: 0.75rem 1.75rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  /* School CTA section inner padding */
+  [style*="border-radius:2rem"] { border-radius: 1.25rem !important; }
+
+  /* Footer grid */
+  footer [style*="grid-template-columns:repeat(auto-fit"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Card 3D — disable hover 3D on touch */
+  .card-3d:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 30px rgba(21,101,192,0.2) !important;
+  }
+
+  /* Admin tables — horizontal scroll */
+  .admin-table-wrap { overflow-x: auto !important; }
+
+  /* Register page 2-col form grid */
+  [style*="grid-template-columns:1fr 1fr"][style*="gap:1rem"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Account page 2-col info grid */
+  [style*="grid-template-columns:1fr 1fr"][style*="gap:1rem"][style*="margin-bottom"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Content admin 2-col */
+  [style*="grid-template-columns:repeat(auto-fill"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Small mobile ≤ 480px ── */
+@media (max-width: 480px) {
+
+  /* Stats 2-col → still 2-col but smaller */
+  [style*="grid-template-columns:repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+  }
+
+  /* Footer — full single col */
+  footer [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hero badge row */
+  [style*="display:flex"][style*="flexWrap:wrap"] {
+    flex-wrap: wrap !important;
+  }
+
+  /* Reduce hero wordmark */
+  [style*="font-size:clamp(8rem"] {
+    font-size: clamp(4rem, 18vw, 10rem) !important;
+  }
+
+  /* Admin sidebar text sizing */
+  .admin-label { font-size: 0.78rem !important; }
+
+  /* Full-width buttons on very small screens */
+  .btn-full-mobile {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* Padding */
+  [style*="padding:4rem 2rem"]  { padding: 2rem 1rem !important; }
+  [style*="padding:2.25rem"]    { padding: 1.25rem !important; }
+  [style*="padding:1.5rem 2rem"]{ padding: 1.25rem 1rem !important; }
+}
+
+/* ── Navbar top strip responsive ── */
+@media (max-width: 600px) {
+  /* Show only phone on top strip, hide hours */
+  .top-strip-hours { display: none !important; }
+  .top-strip-address { display: none !important; }
+}
+
+/* ── Product cards min-width fix ── */
+@media (max-width: 520px) {
+  [style*="minmax(240px"] { grid-template-columns: 1fr !important; }
+  [style*="minmax(280px"] { grid-template-columns: 1fr !important; }
+  [style*="minmax(220px"] { grid-template-columns: 1fr !important; }
+  [style*="minmax(200px"] { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Admin panel mobile ── */
+@media (max-width: 768px) {
+  /* Admin layout — sidebar as drawer would be ideal, for now narrow */
+  .admin-sidebar-collapsed { width: 0 !important; overflow: hidden !important; }
+
+  /* Admin content tables */
+  [style*="grid-template-columns:2fr 2fr 1.5fr 1.5fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
